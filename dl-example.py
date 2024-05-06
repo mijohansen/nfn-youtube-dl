@@ -1,32 +1,18 @@
-import yt_dlp
 from datetime import datetime
 
-def create_url(service: str, asset_id: str):
-    dictt = {
-        "youtube": "https://www.youtube.com/watch?v=" + asset_id,
-    }
-    return dictt[service]
+from notefornote import download_audio
 
+# Youtube
+# afrobeat dj settet: j-FKO0ZGBHw
+# psykedelic indie rock: 8QrzHqmWgwQ
+# koffee: 0Cmzn8BIOdA
+# music influencer: siHfCV6vuSc
+# download_audio("youtube", "siHfCV6vuSc")
 
-def download_audio(service: str, asset_id: str):
-    ydl_opts = {
-        "postprocessors": [
-            {
-                "key": "FFmpegExtractAudio",
-                "preferredcodec": "m4a",
-            }
-        ],
-        "youtube_include_dash_manifest": False,
-        "youtube_include_hls_manifest": False,
-        "format_sort": ["+size", "+br"],
-        "outtmpl": "output/test",
-    }
-    url = create_url(service, asset_id)
-
-    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-        ydl.download([url])
-
+# SoundCloud: https://on.soundcloud.com/zZeY7rWqdncdKq8d7
 
 start_time = datetime.now()
-download_audio("youtube", "j-FKO0ZGBHw")
+filepath = download_audio("soundcloud", "zZeY7rWqdncdKq8d7")
+
+print(filepath)
 print(datetime.now() - start_time)
