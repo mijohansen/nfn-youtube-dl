@@ -44,6 +44,12 @@ yt-dlp --audio-format mp3 -o "test.mp3" https://www.youtube.com/watch?v=7E-cwdns
 
 Eksempel her: https://github.com/cobanov/audio-genre-detection/tree/main
 
+### Run cloud functions locally
+
+```bash
+functions-framework --target=hello
+```
+
 ### Deployment
 
 From a starting point this service seems.
