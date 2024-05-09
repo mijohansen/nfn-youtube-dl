@@ -1,6 +1,5 @@
 import yt_dlp
 import os
-import tempfile
 
 
 def create_url(service: str, asset_id: str):
@@ -11,9 +10,8 @@ def create_url(service: str, asset_id: str):
     return dictt[service]
 
 
-def download_audio(service: str, asset_id: str):
-    temp_dir = tempfile.TemporaryDirectory()
-    outtmpl = os.path.join(temp_dir.name, asset_id)
+def download_audio(service: str, asset_id: str, target_dir: str = "output"):
+    outtmpl = os.path.join(target_dir, asset_id)
     ydl_opts = {
         "postprocessors": [
             {

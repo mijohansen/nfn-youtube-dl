@@ -1,5 +1,2 @@
-essentia
 essentia-tensorflow
-functions-framework==3.*
-numpy==1.*
 yt_dlp
