@@ -33,6 +33,7 @@ brew install pipx
 brew install ffmpeg
 brew install ffprobe
 brew install black
+brew install killport
 pipx ensurepath
 ```
 
@@ -46,8 +47,10 @@ Eksempel her: https://github.com/cobanov/audio-genre-detection/tree/main
 
 ### Run cloud functions locally
 
+On mac `OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES`
+
 ```bash
-functions-framework --target=hello
+killport 7475 && functions-framework --target=handler --port=7475
 ```
 
 ### Deployment
@@ -56,4 +59,24 @@ From a starting point this service seems.
 
 https://github.com/GoogleCloudPlatform/functions-framework-python
 
+```bash
+gcloud functions deploy handler --gen2 --runtime python312 --trigger-http --memory 1024 --project notefornote
+gcloud functions call handler --project notefornote
+```
 
+### vendored deps
+
+FML moment
+https://cloud.google.com/functions/docs/writing/specifying-dependencies-python#python38
+
+```bash
+python3 -m pip download -r requirements.txt --only-binary=:all: \
+-d deps \
+--python-version 3.12.3 \
+--platform manylinux2014_x86_64 \
+--implementation cp
+```
+
+### Architecture
+
+The analysis service is booted with a token that make it possible to talk with a sentral server.
