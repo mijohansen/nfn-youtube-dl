@@ -23,6 +23,7 @@ def download_audio(service: str, asset_id: str, target_dir: str = "output"):
         "youtube_include_hls_manifest": False,
         "format_sort": ["+size", "+br"],
         "outtmpl": outtmpl,
+        "max_filesize": 52428800
         # "keepvideo": True,
     }
     url = create_url(service, asset_id)
