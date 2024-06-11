@@ -1,3 +1,4 @@
+import os
 from datetime import datetime
 
 from notefornote import download_audio
@@ -13,6 +14,7 @@ from notefornote import download_audio
 
 start_time = datetime.now()
 filepath = download_audio("soundcloud", "zZeY7rWqdncdKq8d7")
-
-print(filepath)
-print(datetime.now() - start_time)
+download_filesize = os.path.getsize(filepath)
+print({"download_filesize": download_filesize})
+print({"download_filepath": filepath})
+print({"timing": datetime.now() - start_time})

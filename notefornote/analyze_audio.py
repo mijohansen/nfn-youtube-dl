@@ -1,5 +1,6 @@
-from essentia.standard import MonoLoader, TensorflowPredictEffnetDiscogs, TensorflowPredict2D
 import numpy as np
+from essentia.standard import MonoLoader, TensorflowPredictEffnetDiscogs, TensorflowPredict2D
+
 from notefornote.labels import labels
 
 
