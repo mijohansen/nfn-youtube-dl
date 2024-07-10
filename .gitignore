@@ -163,3 +163,5 @@ cython_debug/
 output/
 deps/
 *.pb
+*.crt
+*.pem

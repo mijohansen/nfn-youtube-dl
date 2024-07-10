@@ -1,0 +1,25 @@
+{
+  "accountId": "e286d105c2fe",
+  "action": "upload",
+  "bucketId": "4ef25836cd8100259c020f1e",
+  "contentLength": 1654164,
+  "contentMd5": "06f03a9ae3107b98350f8907e03cdb92",
+  "contentSha1": "6a74887024e916ba170c7c1d95e13e3b9c9480c1",
+  "contentType": "audio/opus",
+  "fileId": "4_z4ef25836cd8100259c020f1e_f10843abbb74c335b_d20240613_m134322_c003_v0312012_t0009_u01718286202423",
+  "fileInfo": {},
+  "fileName": "soundcloud/zZeY7rWqdncdKq8d7.32k.opus",
+  "fileRetention": {
+    "isClientAuthorizedToRead": false,
+    "value": null
+  },
+  "legalHold": {
+    "isClientAuthorizedToRead": false,
+    "value": null
+  },
+  "serverSideEncryption": {
+    "algorithm": null,
+    "mode": null
+  },
+  "uploadTimestamp": 1718286202423
+}
