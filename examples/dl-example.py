@@ -1,7 +1,6 @@
-import os
 from datetime import datetime
 
-from notefornote import download_audio
+from notefornote import download_and_resample_audio, print_json
 
 # Youtube
 # afrobeat dj settet: j-FKO0ZGBHw
@@ -13,8 +12,10 @@ from notefornote import download_audio
 # SoundCloud: https://on.soundcloud.com/zZeY7rWqdncdKq8d7
 
 start_time = datetime.now()
-filepath = download_audio("soundcloud", "zZeY7rWqdncdKq8d7")
-download_filesize = os.path.getsize(filepath)
-print({"download_filesize": download_filesize})
-print({"download_filepath": filepath})
-print({"timing": datetime.now() - start_time})
+metadata = download_and_resample_audio("soundcloud", "zZeY7rWqdncdKq8d7")
+# metadata = download_audio("youtube", "0Cmzn8BIOdA")
+
+print_json(metadata)
+
+
+print({"timing": (datetime.now() - start_time).total_seconds()})

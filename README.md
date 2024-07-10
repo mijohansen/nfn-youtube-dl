@@ -8,13 +8,6 @@ https://github.com/yt-dlp/yt-dlp
 flask --app hello run
 ```
 
-Laste ned disse pb-filene
-
-```bash
-wget -q  https://essentia.upf.edu/models/feature-extractors/discogs-effnet/discogs-effnet-bs64-1.pb
-wget -q  https://essentia.upf.edu/models/classification-heads/genre_discogs400/genre_discogs400-discogs-effnet-1.pb
-```
-
 ```bash
 pipx install flask
 pipx install yt_dlp
@@ -80,3 +73,9 @@ python3 -m pip download -r requirements.txt --only-binary=:all: \
 ### Architecture
 
 The analysis service is booted with a token that make it possible to talk with a sentral server.
+
+#### Download service
+
+* written in python.
+* could be dumb, that is orchestrated from a sentral point
+* sentral server could hit this server with all it need to 

@@ -1,3 +1,5 @@
+import os
+
 import numpy as np
 from essentia.standard import MonoLoader, TensorflowPredictEffnetDiscogs, TensorflowPredict2D
 
@@ -8,13 +10,15 @@ def remove_low_match(genre):
     return genre[1] >= 0.01
 
 
+models_dir = os.path.dirname(__file__) + "/models/"
+
 embeddings_model = TensorflowPredictEffnetDiscogs(
-    graphFilename="discogs-effnet-bs64-1.pb",
+    graphFilename=models_dir + "discogs-effnet-bs64-1.pb",
     output="PartitionedCall:1"
 )
 
 classification_model = TensorflowPredict2D(
-    graphFilename="genre_discogs400-discogs-effnet-1.pb",
+    graphFilename=models_dir + "genre_discogs400-discogs-effnet-1.pb",
     input="serving_default_model_Placeholder",
     output="PartitionedCall:0",
 )

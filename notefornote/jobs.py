@@ -3,7 +3,7 @@ import tempfile
 from datetime import datetime
 from logging import getLogger
 
-from notefornote import create_analysis_task, download_audio, analyze_audio, post_analysis_result
+from notefornote import create_analysis_task, download_audio, post_analysis_task_result
 
 logger = getLogger(__name__)
 
@@ -14,12 +14,12 @@ def do_complete_task():
     target_dir = tempfile.TemporaryDirectory()
     filepath = download_audio(task["platform"],  task["platform_ident"], target_dir.name)
     download_finished = datetime.now()
-    genres = analyze_audio(filepath)
+
     metadata = dict({
         'download_timing': download_finished - download_started,
         'analyse_timing': datetime.now() - download_finished,
         'download_size': os.path.getsize(filepath)
     })
     print(metadata)
-    post_analysis_result(task["id"], genres, metadata)
+    post_analysis_task_result(task["id"], metadata)
 
