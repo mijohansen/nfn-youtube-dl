@@ -1,4 +1,4 @@
-from notefornote import upload_file
+from notefornote import upload_file_to_b2
 
 token = {
     "authorizationToken": '4_003e286d105c2fe0000000001_01b51cd0_2313b4_upld_rNJDg38mvDoLwsEUjbL5Jo3ZFMM=',
@@ -10,6 +10,6 @@ token = {
 test_filepath = "../output/zZeY7rWqdncdKq8d7.32k.opus"
 
 
-result = upload_file(token["uploadUrl"], token["authorizationToken"], test_filepath, "soundcloud")
+result = upload_file_to_b2(token["uploadUrl"], token["authorizationToken"], test_filepath, "soundcloud")
 
 print(result)
