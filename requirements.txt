@@ -1,2 +1,2 @@
 essentia-tensorflow
-yt_dlp
+yt_dlp==2024.7.9

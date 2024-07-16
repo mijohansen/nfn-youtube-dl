@@ -3,23 +3,31 @@ import tempfile
 from datetime import datetime
 from logging import getLogger
 
-from notefornote import create_analysis_task, download_audio, post_analysis_task_result
+from notefornote import post_download_task_result, fetch_download_task, download_and_resample_audio, fetch_analysis_task
+from notefornote.upload import upload_file_to_b2
 
 logger = getLogger(__name__)
 
 
-def do_complete_task():
-    task = create_analysis_task()
-    download_started = datetime.now()
+def perform_download_task():
+    task = fetch_download_task()
     target_dir = tempfile.TemporaryDirectory()
-    filepath = download_audio(task["platform"],  task["platform_ident"], target_dir.name)
-    download_finished = datetime.now()
+    filepath, metadata = download_and_resample_audio(task["platform"], task["platform_ident"], {}, target_dir.name)
+    started = datetime.now()
+    upload_data = upload_file_to_b2(upload_url=task["upload_url"],
+                                    authorization=task["authorization"],
+                                    platform=task["platform"],
+                                    filepath=filepath)
 
-    metadata = dict({
-        'download_timing': download_finished - download_started,
-        'analyse_timing': datetime.now() - download_finished,
-        'download_size': os.path.getsize(filepath)
-    })
-    print(metadata)
-    post_analysis_task_result(task["id"], metadata)
+    metadata['upload_timing'] = (datetime.now() - started).total_seconds()
+    metadata['download_size'] = os.path.getsize(filepath)
 
+    post_download_task_result(task["task_id"], upload_data, metadata)
+
+
+def perform_analysis_task():
+    task = fetch_analysis_task()
+
+    analysis_data = perform_analysis(task["platform"], task["platform_ident"], {})
+    metadata = {}
+    post_analysis_task_result(task["task_id"], analysis_data, metadata)

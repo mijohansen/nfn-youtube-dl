@@ -12,10 +12,9 @@ from notefornote import download_and_resample_audio, print_json
 # SoundCloud: https://on.soundcloud.com/zZeY7rWqdncdKq8d7
 
 start_time = datetime.now()
-metadata = download_and_resample_audio("soundcloud", "zZeY7rWqdncdKq8d7")
+metadata = download_and_resample_audio("soundcloud", "zZeY7rWqdncdKq8d7", {})
 # metadata = download_audio("youtube", "0Cmzn8BIOdA")
 
 print_json(metadata)
-
 
 print({"timing": (datetime.now() - start_time).total_seconds()})
